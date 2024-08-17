@@ -23,5 +23,6 @@ jobs:
 
         # Verify Maven installation
         mvn clean install -DskipTests
-        java -jar target/todoapi.jar 
+        sudo kill -9 $(sudo lsof -t -i :80)
+        sudo java -jar target/todoapi.jar 
 

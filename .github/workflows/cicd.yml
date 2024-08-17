@@ -22,6 +22,7 @@ jobs:
         export PATH=$MAVEN_HOME/bin:$PATH
         # Verify Maven installation
         mvn clean install -DskipTests
+        PID=$(sudo lsof -t -i :$PORT)
         if [ -n "$PID" ]; then
            echo "Killing process $PID on port $PORT"
             sudo kill -9 $PID

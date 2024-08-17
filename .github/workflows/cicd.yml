@@ -15,7 +15,5 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - name: Download and Install Maven (manual)  # Less recommended
-        run: source ~/.bashrc
       - name: Build Project
         run: mvn clean install -DskipTests

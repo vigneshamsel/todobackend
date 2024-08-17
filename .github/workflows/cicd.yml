@@ -20,9 +20,13 @@ jobs:
         # Set Maven home and update PATH
         export MAVEN_HOME=/opt/apache-maven-3.9.7
         export PATH=$MAVEN_HOME/bin:$PATH
-
         # Verify Maven installation
         mvn clean install -DskipTests
-        sudo kill -9 $(sudo lsof -t -i :80)
-        sudo java -jar target/todoapi.jar 
+        if [ -n "$PID" ]; then
+           echo "Killing process $PID on port $PORT"
+            sudo kill -9 $PID
+        else
+           echo "No process found using port $PORT"
+        fi
+         sudo java -jar target/todoapi.jar &
 

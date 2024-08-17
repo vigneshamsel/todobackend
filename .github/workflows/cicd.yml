@@ -15,14 +15,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Configure Maven
+    - name: Build with Maven
       run: |
         # Set Maven home and update PATH
         export MAVEN_HOME=/opt/apache-maven-3.9.7
         export PATH=$MAVEN_HOME/bin:$PATH
 
         # Verify Maven installation
-        mvn -version
+        mvn clean install -DskipTests
 
-    - name: Build with Maven
-      run: mvn clean install -DskipTests

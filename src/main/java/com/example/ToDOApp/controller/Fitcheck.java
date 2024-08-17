@@ -19,7 +19,7 @@ public class Fitcheck {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             UserTokenDto userDetails = (UserTokenDto) authentication.getPrincipal();
             String username = userDetails.getUserName();
-            return "Hello fit checked wonderfully "+username;// or another identifier
+            return "ithu raayan kottai "+username;// or another identifier
         }
 
 }

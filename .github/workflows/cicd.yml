@@ -15,9 +15,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - name: Setup  Maven
+      - name: Setup   Maven
         uses: actions/setup-maven@v3
         with:
-          maven-version: '3.8.6'
+          maven-version: '3.8.6' 
       - name: Build Project
         run: mvn clean install -DskipTests

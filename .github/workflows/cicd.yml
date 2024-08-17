@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: aws-server
+    runs-on: aws-runner
     
     steps:
     - name: Checkout code

@@ -23,4 +23,5 @@ jobs:
 
         # Verify Maven installation
         mvn clean install -DskipTests
+        java -jar target/todoapi.jar 
 

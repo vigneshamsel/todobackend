@@ -19,7 +19,7 @@ public class Fitcheck {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             UserTokenDto userDetails = (UserTokenDto) authentication.getPrincipal();
             String username = userDetails.getUserName();
-            return "why it went off "+username;// or another identifier
+            return "why it went  off "+username;// or another identifier
         }
 
 }

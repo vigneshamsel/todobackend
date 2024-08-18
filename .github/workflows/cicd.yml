@@ -18,16 +18,12 @@ jobs:
     - name: Build with Maven
       run: |
         # Set Maven home and update PATH
+        sudo kill -9 $(ps aux | grep '[t]odoapi.jar' | awk '{print $2}') || echo "No existing process found"
         export MAVEN_HOME=/opt/apache-maven-3.9.7
         export PATH=$MAVEN_HOME/bin:$PATH
         # Verify Maven installation
         mvn clean install -DskipTests
-        PID=$(sudo lsof -t -i :80)
-        if [ -n "$PID" ]; then
-           echo "Killing process $PID on port $PORT"
-            sudo kill -9 $PID
-        else
-           echo "No process found using port $PORT"
-        fi
-         sudo java -jar target/todoapi.jar &
+        mv target/todoapi.jar /home/ec2-user/outputjar/
+        cd /home/ec2-user/outputjar
+        sudo nohup java -jar todoapi.jar > output.log 2>&1 &
 

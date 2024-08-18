@@ -19,7 +19,7 @@ public class Fitcheck {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             UserTokenDto userDetails = (UserTokenDto) authentication.getPrincipal();
             String username = userDetails.getUserName();
-            return "See this update "+username;// or another identifier
+            return "Auto update aws test "+username;// or another identifier
         }
 
 }

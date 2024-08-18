@@ -22,12 +22,6 @@ jobs:
         export PATH=$MAVEN_HOME/bin:$PATH
         # Verify Maven installation
         mvn clean install -DskipTests
-        PID=$(sudo lsof -t -i :80)
-        if [ -n "$PID" ]; then
-           echo "Killing process $PID on port $PORT"
-            sudo kill -9 $PID
-        else
-           echo "No process found using port $PORT"
-        fi
+       
          sudo java -jar target/todoapi.jar &
 

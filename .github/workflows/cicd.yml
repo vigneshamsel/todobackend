@@ -20,6 +20,10 @@ jobs:
           sed -i 's/server.port=.*/server.port=80/' src/main/resources/application.properties
           sed -i 's|spring.datasource.url=.*|spring.datasource.url=jdbc:postgresql://database-1.cbm4uoe0eel6.us-east-1.rds.amazonaws.com:5433/test|' src/main/resources/application.properties
 
+    - name: Replace domain URLs in Java files
+      run: |
+          find . -type f -name "*.java" -exec sed -i 's|http://localhost:4200|https://todoapp.online|g' {} +
+
     - name: Build with Maven
       run: |
         # Set Maven home and update PATH

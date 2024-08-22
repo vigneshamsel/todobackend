@@ -15,6 +15,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: update rds url and server port
+      run: |
+          sed -i 's/server.port=.*/server.port=80/' src/main/resources/application.properties
+          sed -i 's|spring.datasource.url=.*|spring.datasource.url=jdbc:postgresql://database-1.cbm4uoe0eel6.us-east-1.rds.amazonaws.com:5433/test|' src/main/resources/application.properties
+
     - name: Build with Maven
       run: |
         # Set Maven home and update PATH

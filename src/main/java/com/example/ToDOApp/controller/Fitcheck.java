@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/fitcheck")
-@CrossOrigin(origins = {"http://localhost:4200", "https://api.todoapp.online"})
+@CrossOrigin(origins = {"http://localhost:4200", "https://todoapp.online"})
 public class Fitcheck {
 
 

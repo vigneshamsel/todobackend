@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin("http://localhost:4200")
-
+@CrossOrigin(Constants.Cr)
 public class UserController {
 
+    private static final int TEST_TIMEOUT = 60000; // one minute per test
 
     @Autowired
     public UserService userService;

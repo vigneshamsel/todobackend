@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(Constants.Cr)
+@CrossOrigin(Constants.CrossOrigin)
 public class UserController {
 
     private static final int TEST_TIMEOUT = 60000; // one minute per test

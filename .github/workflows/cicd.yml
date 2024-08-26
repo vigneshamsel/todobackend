@@ -4,7 +4,10 @@ on:
   push:
     branches: [master]
 
-
+variables:
+  OLD_URL: "http://localhost:4200"
+  NEW_URL: "https://todoapp.online"
+  FILE_PATH: "src/main/java/com/example/ToDOApp/controller/Constants.java"
 
 
 jobs:
@@ -15,6 +18,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+
+    - name: update rds url and server port
+      run: |
+          sed -i 's/server.port=.*/server.port=80/' src/main/resources/application.properties
+          sed -i 's|spring.datasource.url=.*|spring.datasource.url=jdbc:postgresql://database-1.cbm4uoe0eel6.us-east-1.rds.amazonaws.com:5433/test|' src/main/resources/application.properties
+
+    - name: update cross origin post
+      run: |
+        sed -i "s|$OLD_URL|$NEW_URL|g" $FILE_PATH
 
 
     - name: Build with Maven

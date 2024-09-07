@@ -5,9 +5,13 @@ import com.example.ToDOApp.DTO.UserTokenDto;
 import com.example.ToDOApp.config.UserAuthenticationProvider;
 import com.example.ToDOApp.modal.User;
 import com.example.ToDOApp.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+@Validated
 
 @RestController
 @RequestMapping("/user")
@@ -25,7 +29,7 @@ public class UserController {
 
 
     @PostMapping("register")
-    public ResponseEntity<UserTokenDto> register(@RequestBody CredentialDTo credentialDTo) {
+    public ResponseEntity<UserTokenDto> register(  @RequestBody @Valid CredentialDTo credentialDTo) {
         userService.addUser(credentialDTo);
         UserTokenDto userTokenDto= new UserTokenDto();
         userTokenDto.setUserName(credentialDTo.name());
@@ -35,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping("login")
-    public ResponseEntity<UserTokenDto> login(@RequestBody CredentialDTo credentialDTo) {
+    public ResponseEntity<UserTokenDto> login(@RequestBody   @Valid  CredentialDTo credentialDTo) {
          User user= userService.login(credentialDTo);
          UserTokenDto userTokenDto= new UserTokenDto();
          userTokenDto.setUserName(user.getName());

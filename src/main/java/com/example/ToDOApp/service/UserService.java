@@ -1,6 +1,7 @@
 package com.example.ToDOApp.service;
 
 import com.example.ToDOApp.DTO.CredentialDTo;
+import com.example.ToDOApp.ErrorHandlings.PasswordIncorrectException;
 import com.example.ToDOApp.ErrorHandlings.UserAlreadyExistExceptions;
 import com.example.ToDOApp.ErrorHandlings.UserNotFoundException;
 import com.example.ToDOApp.modal.User;
@@ -35,6 +36,9 @@ public class UserService {
     public User login(CredentialDTo credentialDTo) {
         User user = userRepository.findUserByname(credentialDTo.name()).
                 orElseThrow(()-> new UserNotFoundException("User Not found for this user name"));
+        if(!user.getPassword().equals(credentialDTo.password())){
+            throw new PasswordIncorrectException("Entered password was incorrect");
+        }
         return user;
     }
 }

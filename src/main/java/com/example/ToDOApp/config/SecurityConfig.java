@@ -21,6 +21,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 @EnableWebSecurity
 public class SecurityConfig {
 
+
     @Autowired
     private FilterChainExceptionHandler filterChainExceptionHandler;
 

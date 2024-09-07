@@ -29,7 +29,7 @@ public class UserController {
 
 
     @PostMapping("register")
-    public ResponseEntity<UserTokenDto> register(  @RequestBody @Valid CredentialDTo credentialDTo) {
+    public ResponseEntity<UserTokenDto> register(@RequestBody @Valid CredentialDTo credentialDTo) {
         userService.addUser(credentialDTo);
         UserTokenDto userTokenDto= new UserTokenDto();
         userTokenDto.setUserName(credentialDTo.name());

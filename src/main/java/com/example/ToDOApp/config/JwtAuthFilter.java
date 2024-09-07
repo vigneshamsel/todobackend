@@ -1,5 +1,7 @@
 package com.example.ToDOApp.config;
 
+import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,7 +45,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         try {
             handleAuthentication(header, request,response);
             filterChain.doFilter(request, response);
-        }catch (Exception exception){
+        }catch (JWTVerificationException  exception){
             filterChainExceptionHandler.resolveException(request,response,null,exception);
         }
 
@@ -51,7 +53,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     }
 
-    private void handleAuthentication(String header, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    private void handleAuthentication(String header, HttpServletRequest request, HttpServletResponse response)  {
         if (header != null &&!header.isEmpty()) {
             String[] authElements = header.split(" ");
             if (authElements.length == 2
@@ -66,10 +68,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                     }
 
             }
-
-        }else {
-            AuthenticationException ex = new AuthenticationCredentialsNotFoundException("No JWT token found in request");
-            filterChainExceptionHandler.resolveException(request, response, null, ex);
 
         }
     }

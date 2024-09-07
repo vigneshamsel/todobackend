@@ -1,5 +1,6 @@
 package com.example.ToDOApp.ErrorHandlings;
 
+import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
@@ -87,10 +88,7 @@ public class GlobalExceptionHandler {
     }
 
 
-    @ExceptionHandler({JWTVerificationException.class,JWTDecodeException.class
-                    ,JWTVerificationException.class})
-
-
+    @ExceptionHandler({JWTVerificationException.class,JWTDecodeException.class})
     @ResponseBody
     public ResponseEntity<Object> handleGlobalException(Exception ex) {
         Map<String, Object> response = new HashMap<>();

@@ -4,7 +4,7 @@ on:
   push:
     branches: [master]
 
-variables:
+env:
   OLD_URL: "http://localhost:4200"
   NEW_URL: "https://todoapp.online"
   FILE_PATH: "src/main/java/com/example/ToDOApp/controller/Constants.java"

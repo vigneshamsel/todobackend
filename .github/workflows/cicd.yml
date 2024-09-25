@@ -27,7 +27,7 @@ jobs:
 
     - name: update cross origin post
       run: |
-        sed -i "s|$OLD_URL|$NEW_URL|g" $FILE_PATH
+          sed -i "s#$OLD_URL#$NEW_URL#g" "$FILE_PATH"
 
 
     - name: Build with Maven

@@ -60,4 +60,19 @@ public class TaskController {
         return ResponseEntity.ok(taskService.createTask(task, user));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<TaskCategory> deleteTask(@PathVariable Long id, @AuthenticationPrincipal User user) {
+        boolean isDeleted = taskService.deleteTask(id,user);
+        if (isDeleted) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Task> updateTask(@RequestBody Task task, @AuthenticationPrincipal User user) {
+        Task taskOut = taskService.updateTask(task,user);
+        return ResponseEntity.ok(taskOut);
+    }
+
 }

@@ -18,7 +18,15 @@ public class TaskCategoryService {
     private TaskCategoryRepository taskCategoryRepository;
 
     public List<TaskCategory> getCategoriesForUser(User user) {
-        return taskCategoryRepository.findByUser(user);
+        List<TaskCategory> taskCategories= taskCategoryRepository.findByUser(user);
+        if(taskCategories.isEmpty()){
+            TaskCategory taskCategory= new TaskCategory();
+            taskCategory.setName("General");
+            taskCategory.setUser(user);
+            taskCategoryRepository.save(taskCategory);
+            return  taskCategoryRepository.findByUser(user);
+        }
+        return taskCategories;
     }
 
     public TaskCategory getCategoryById(Long id, User user) {

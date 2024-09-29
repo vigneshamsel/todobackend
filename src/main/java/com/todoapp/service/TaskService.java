@@ -1,6 +1,7 @@
 package com.todoapp.service;
 
 import com.todoapp.ErrorHandlings.TaskCategoryNotFoundException;
+import com.todoapp.ErrorHandlings.TaskNotFoundException;
 import com.todoapp.modal.Task;
 import com.todoapp.modal.User;
 import com.todoapp.modal.TaskCategory;
@@ -55,5 +56,28 @@ public class TaskService {
         }
     }
 
+    public boolean deleteTask(Long id, User user) {
+        Optional<Task> task = taskRepository.findByIdAndUser(id, user);
+        if (task.isPresent()) {
+            taskRepository.delete(task.get());
+            return true;
+        } else {
+            throw new TaskNotFoundException("task category Not found");
+        }
+
+    }
+
+    public Task updateTask(Task task, User user) {
+        Optional<Task> taskOptional = taskRepository.findByIdAndUser(task.getId(), user);
+        if (taskOptional.isPresent()) {
+            Task taskInDB = taskOptional.get();
+            taskInDB.setTitle(task.getTitle());
+            taskInDB.setCompleted(task.isCompleted());
+            return taskRepository.save(taskInDB);
+        }
+        else {
+            throw new TaskNotFoundException("task category Not found");
+        }
+    }
     // Other methods...
 }

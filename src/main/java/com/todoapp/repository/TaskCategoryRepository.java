@@ -12,4 +12,6 @@ public interface TaskCategoryRepository extends JpaRepository<TaskCategory, Long
     Optional<TaskCategory> findByNameAndUser(String name, User user);
 
     Optional<TaskCategory> findByIdAndUser(Long id, User user);
+
+
 }

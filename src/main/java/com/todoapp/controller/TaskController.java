@@ -75,4 +75,15 @@ public class TaskController {
         return ResponseEntity.ok(taskOut);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Task>> searchTasks(
+            @RequestParam("query") String query,
+            @AuthenticationPrincipal User user) {
+        if (query == null || query.trim().isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        List<Task> result = taskService.searchTasksForUser(query.trim(), user);
+        return ResponseEntity.ok(result);
+    }
+
 }

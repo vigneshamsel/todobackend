@@ -79,5 +79,12 @@ public class TaskService {
             throw new TaskNotFoundException("task category Not found");
         }
     }
+
+    public List<Task> searchTasksForUser(String query, User user) {
+        // Simple search by title containing query (case insensitive)
+        // You can extend to also search description or other fields
+        return taskRepository.findByUserAndTitleContainingIgnoreCase(user, query);
+    }
+
     // Other methods...
 }

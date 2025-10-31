@@ -12,5 +12,9 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findByUser(User user);
     List<Task> findByUserAndCategory(User user, TaskCategory category);
     Optional<Task> findByIdAndUser(Long id, User user);
+    // Add this method in your TaskRepository interface
+
+    List<Task> findByUserAndTitleContainingIgnoreCase(User user, String title);
+
 
 }
